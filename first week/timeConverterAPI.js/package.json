@@ -1,0 +1,14 @@
+{
+  "name": "timeconverterapi",
+  "version": "1.0.0",
+  "description": "API to convert a time in 12-hour format to 24-hour ",
+  "main": "timeConverter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Victor G. S. Monger",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
