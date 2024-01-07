@@ -1,4 +1,4 @@
-const timeConverter = (timeString) => {
+const modelTimeConverter = (timeString) => {
   const timeArray = timeString.split("");
 
   const hours = timeArray.slice(0, 2).join("");
@@ -12,4 +12,6 @@ const timeConverter = (timeString) => {
   return `${treatedMilitaryHours}:${minutes}:${seconds}`;
 };
 
-console.log(timeConverter("07:05:45AM"));
+module.exports = {
+  modelTimeConverter,
+};
