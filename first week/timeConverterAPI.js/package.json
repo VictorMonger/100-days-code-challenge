@@ -4,7 +4,8 @@
   "description": "API to convert a time in 12-hour format to 24-hour ",
   "main": "timeConverter.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
   },
   "author": "Victor G. S. Monger",
   "license": "ISC",
