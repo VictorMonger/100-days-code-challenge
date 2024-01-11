@@ -18,7 +18,12 @@ CREATE TABLE [IF NOT EXIST] modality (
 );
 
 CREATE TABLE [IF NOT EXIST] registration (
-  registration_id INT
-  date_registration DATE
-
+  registration_id INT,
+  date_registration DATE,
+  CONSTRAINT fk_students
+    FOREIGN KEY (cpf)
+      REFERENCES students (cpf),
+  CONSTRAINT fk_modality
+    FOREIGN KEY (id_modality)
+      REFERENCES modality (id_modality)
 );
