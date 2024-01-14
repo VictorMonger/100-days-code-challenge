@@ -1,7 +1,11 @@
-DELETE FROM students s
-USING registrations r
-WHERE s.cpf = r.cpf
+DELETE FROM registrations
+WHERE cpf = '03098778900'
 
-DELETE FROM modalities m
-USING registrations r
-WHERE m.id = r.modality_id
+DELETE FROM students
+WHERE cpf = '03098778900'
+
+DELETE FROM registrations
+WHERE modality_id = 1
+
+DELETE FROM modalities
+WHERE id = 1
