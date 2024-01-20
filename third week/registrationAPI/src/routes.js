@@ -1,6 +1,12 @@
 const express = require("express");
 
-const { registerUser, getAllUsers } = require("./controllers/userController.js");
+const {
+  registerUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+} = require("./controllers/userController.js");
 
 const users = express.Router();
 
@@ -12,6 +18,18 @@ users.get("/", (request, response) => {
   getAllUsers(request, response);
 });
 
-module.exports = { 
-  users, 
+users.get("/:userId", (request, response) => {
+  getUserById(request, response);
+});
+
+users.put("/:userId", (request, response) => {
+  updateUser(request, response);
+});
+
+users.delete("/:userId", (request, response) => {
+  deleteUser(request, response);
+});
+
+module.exports = {
+  users,
 };
