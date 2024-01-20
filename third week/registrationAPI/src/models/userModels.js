@@ -15,10 +15,30 @@ const modelRegisterUser = async (user) => {
 };
 
 const modelGetAllUsers = async () => {
-  return await connection("users").select("*")
-}
+  return await connection("users").select("*");
+};
+
+const modelGetUserById = async (userId) => {
+  return await connection("users").select("*").where("userId", userId).first();
+};
+
+const modelDeleteUser = async (userId) => {
+  return await connection("users").where("userId", userId).delete();
+};
+
+const modelUpdateUser = async (userId, userName) => {
+  return await connection("users").where("userId", userId).update(
+    {
+      userName,
+    },
+    ["userId", "userName"]
+  );
+};
 
 module.exports = {
   modelRegisterUser,
   modelGetAllUsers,
+  modelGetUserById,
+  modelUpdateUser,
+  modelDeleteUser,
 };
