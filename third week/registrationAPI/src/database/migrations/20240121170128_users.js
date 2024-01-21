@@ -4,12 +4,14 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable("users", (table) => {
-    table.increments("userId").primary();
+    table.uuid("id").defaultTo(knex.fn.uuid()).primary();
     table.string("userName").notNullable();
     table.string("firstName").notNullable();
     table.string("lastName").notNullable();
     table.string("email").notNullable();
     table.string("password").notNullable();
+
+    table.unique(["email"], {indexName: 'email_unique', useConstraint: true})
   });
 };
 
