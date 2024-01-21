@@ -18,15 +18,15 @@ users.get("/", (request, response) => {
   getAllUsers(request, response);
 });
 
-users.get("/:userId", (request, response) => {
+users.get("/:id", (request, response) => {
   getUserById(request, response);
 });
 
-users.put("/:userId", (request, response) => {
+users.put("/:id", (request, response) => {
   updateUser(request, response);
 });
 
-users.delete("/:userId", (request, response) => {
+users.delete("/:id", (request, response) => {
   deleteUser(request, response);
 });
 

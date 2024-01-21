@@ -35,26 +35,26 @@ const getAllUsers = async (request, response) => {
 };
 
 const getUserById = async (request, response) => {
-  const { userId } = request.params;
+  const { id } = request.params;
 
-  const user = await modelGetUserById(userId);
+  const user = await modelGetUserById(id);
 
   return response.status(200).json(user);
 };
 
 const updateUser = async (request, response) => {
-  const { userId } = request.params;
+  const { id } = request.params;
   const { userName } = request.body;
 
-  const updatedUser = await modelUpdateUser(userId, userName);
+  const updatedUser = await modelUpdateUser(id, userName);
 
   return response.status(200).json(updatedUser);
 };
 
 const deleteUser = async (request, response) => {
-  const { userId } = request.params;
+  const { id } = request.params;
 
-  const deletedUser = await modelDeleteUser(userId);
+  const deletedUser = await modelDeleteUser(id);
 
   return response.status(200).json(deletedUser);
 };

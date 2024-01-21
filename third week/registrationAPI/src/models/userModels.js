@@ -18,20 +18,20 @@ const modelGetAllUsers = async () => {
   return await connection("users").select("*");
 };
 
-const modelGetUserById = async (userId) => {
-  return await connection("users").select("*").where("userId", userId).first();
+const modelGetUserById = async (id) => {
+  return await connection("users").select("*").where("id", id).first();
 };
 
-const modelDeleteUser = async (userId) => {
-  return await connection("users").where("userId", userId).delete();
+const modelDeleteUser = async (id) => {
+  return await connection("users").where("id", id).delete();
 };
 
-const modelUpdateUser = async (userId, userName) => {
-  return await connection("users").where("userId", userId).update(
+const modelUpdateUser = async (id, userName) => {
+  return await connection("users").where("id", id).update(
     {
       userName,
     },
-    ["userId", "userName"]
+    ["id", "userName"]
   );
 };
 
