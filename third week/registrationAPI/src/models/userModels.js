@@ -1,5 +1,9 @@
 const connection = require("../database/connection");
 
+const userExistCheck = async (email) => {
+  return await connection("users").select("email").where("email", email).first();
+};
+
 const modelRegisterUser = async (user) => {
   const { userName, firstName, lastName, email, password } = user;
 
@@ -41,4 +45,5 @@ module.exports = {
   modelGetUserById,
   modelUpdateUser,
   modelDeleteUser,
+  userExistCheck,
 };

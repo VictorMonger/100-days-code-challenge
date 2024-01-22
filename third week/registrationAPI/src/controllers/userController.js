@@ -3,16 +3,23 @@ const {
   modelGetAllUsers, 
   modelGetUserById, 
   modelUpdateUser, 
-  modelDeleteUser, 
+  modelDeleteUser,
+  userExistCheck, 
 } = require("../models/userModels");
 
 const registerUser = async (request, response) => {
   const { userName, firstName, lastName, email, password } = request.body;
-  const failsInsertCheck =
+  const failsInsertCheck = 
     !userName || !firstName || !lastName || !email || !password;
 
   if (failsInsertCheck) {
-    response.status(400).json({ error: "Insert all required fields" }).error();
+    return response.status(400).json({ error: "Insert all required fields" });
+  };
+
+  const userExist = await userExistCheck(email);
+  
+  if (userExist) {
+    return response.status(400).json({ error: "E-mail already registered" });
   }
 
   const user = {
