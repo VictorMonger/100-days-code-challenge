@@ -1,42 +1,69 @@
 const connection = require("../database/connection");
 
 const userExistCheck = async (email) => {
-  return await connection("users").select("email").where("email", email).first();
+  try {
+    return await connection("users")
+      .select("email")
+      .where("email", email)
+      .first();
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const modelRegisterUser = async (user) => {
-  const { userName, firstName, lastName, email, password } = user;
+  try {
+    const { userName, firstName, lastName, email, password } = user;
 
-  return await connection("users")
-    .insert({
-      userName,
-      firstName,
-      lastName,
-      email,
-      password,
-    })
-    .returning("*");
+    return await connection("users")
+      .insert({
+        userName,
+        firstName,
+        lastName,
+        email,
+        password,
+      })
+      .returning("*");
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const modelGetAllUsers = async () => {
-  return await connection("users").select("*");
+  try {
+    return await connection("users").select("*");
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const modelGetUserById = async (id) => {
-  return await connection("users").select("*").where("id", id).first();
+  try {
+    return await connection("users").select("*").where("id", id).first();
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const modelDeleteUser = async (id) => {
-  return await connection("users").where("id", id).delete();
+  try {
+    return await connection("users").where("id", id).delete();
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 const modelUpdateUser = async (id, userName) => {
-  return await connection("users").where("id", id).update(
-    {
-      userName,
-    },
-    ["id", "userName"]
-  );
+  try {
+    return await connection("users").where("id", id).update(
+      {
+        userName,
+      },
+      ["id", "userName"]
+    );
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 module.exports = {
