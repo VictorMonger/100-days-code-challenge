@@ -6,6 +6,7 @@ const {
   getUserById,
   updateUser,
   deleteUser,
+  userLogin,
 } = require("./controllers/userController.js");
 
 const users = express.Router();
@@ -20,6 +21,10 @@ users.get("/", (request, response) => {
 
 users.get("/:id", (request, response) => {
   getUserById(request, response);
+});
+
+users.post("/login", (request, response) => {
+  userLogin(request, response);
 });
 
 users.put("/:id", (request, response) => {
