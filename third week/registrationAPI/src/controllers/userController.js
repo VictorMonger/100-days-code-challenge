@@ -4,7 +4,9 @@ const {
   modelGetUserById,
   modelUpdateUser,
   modelDeleteUser,
-  userExistCheck,
+  emailExistCheck,
+  userNameExistCheck,
+  modelUserLogin,
 } = require("../models/userModels");
 
 const registerUser = async (request, response) => {
@@ -17,9 +19,15 @@ const registerUser = async (request, response) => {
       return response.status(400).json({ error: "Insert all required fields" });
     }
 
-    const userExist = await userExistCheck(email);
+    const userNameExist = await userNameExistCheck(userName);
 
-    if (userExist) {
+    if (userNameExist) {
+      return response.status(400).json({ error: "Username already in use" });
+    }
+
+    const userEmailExist = await emailExistCheck(email);
+
+    if (userEmailExist) {
       return response.status(400).json({ error: "E-mail already registered" });
     }
 
@@ -35,7 +43,24 @@ const registerUser = async (request, response) => {
 
     return response.status(201).json(userRegistration);
   } catch (error) {
-    return response.status(500).json({ error: "Server Error" });
+    return response.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const userLogin = async (request, response) => {
+  try {
+    const { userName, email, password } = request.body;
+    const failsInsertCheck = (!userName && !email) || !password;
+
+    if (failsInsertCheck) {
+      return response.status(400).json({ error: "Insert all required fields" });
+    }
+
+    const userLogin = await modelUserLogin((userName || email), password);
+
+    return response.status(200).json(userLogin);
+  } catch (error) {
+    return response.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -45,7 +70,7 @@ const getAllUsers = async (request, response) => {
 
     return response.status(200).json(users);
   } catch (error) {
-    return response.status(500).json({ error: "Server Error" });
+    return response.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -57,7 +82,7 @@ const getUserById = async (request, response) => {
 
     return response.status(200).json(user);
   } catch (error) {
-    return response.status(500).json({ error: "Server Error" });
+    return response.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -70,7 +95,7 @@ const updateUser = async (request, response) => {
 
     return response.status(200).json(updatedUser);
   } catch (error) {
-    return response.status(500).json({ error: "Server Error" });
+    return response.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -82,7 +107,7 @@ const deleteUser = async (request, response) => {
 
     return response.status(200).json(deletedUser);
   } catch (error) {
-    return response.status(500).json({ error: "Server Error" });
+    return response.status(500).json({ error: "Internal Server Error" });
   }
 };
 
@@ -92,4 +117,5 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
+  userLogin,
 };
