@@ -4,28 +4,28 @@ const {
   modelGetUserById,
   modelUpdateUser,
   modelDeleteUser,
-  emailExistCheck,
-  userNameExistCheck,
+  emailExists,
+  userNameExists,
   modelUserLogin,
 } = require("../models/userModels");
 
 const registerUser = async (request, response) => {
   try {
     const { userName, firstName, lastName, email, password } = request.body;
-    const failsInsertCheck =
+    const failsInsert =
       !userName || !firstName || !lastName || !email || !password;
 
-    if (failsInsertCheck) {
+    if (failsInsert) {
       return response.status(400).json({ error: "Insert all required fields" });
     }
 
-    const userNameExist = await userNameExistCheck(userName);
+    const userNameExist = await userNameExists(userName);
 
     if (userNameExist) {
       return response.status(400).json({ error: "Username already in use" });
-    }
+    };
 
-    const userEmailExist = await emailExistCheck(email);
+    const userEmailExist = await emailExists(email);
 
     if (userEmailExist) {
       return response.status(400).json({ error: "E-mail already registered" });
@@ -49,16 +49,20 @@ const registerUser = async (request, response) => {
 
 const userLogin = async (request, response) => {
   try {
-    const { userName, email, password } = request.body;
-    const failsInsertCheck = (!userName && !email) || !password;
+    const { userName, password } = request.body;
+    const failsInsert = !userName || !password;
 
-    if (failsInsertCheck) {
+    if (failsInsert) {
       return response.status(400).json({ error: "Insert all required fields" });
     }
 
-    const userLogin = await modelUserLogin((userName || email), password);
+    const userLogin = await modelUserLogin(userName, password);
 
-    return response.status(200).json(userLogin);
+    if (!userLogin) {
+      return response.status(401).json({ message: "user login or password not valid"});
+    };
+
+    return response.status(200).json({ message: "logged"});
   } catch (error) {
     return response.status(500).json({ error: "Internal Server Error" });
   }
