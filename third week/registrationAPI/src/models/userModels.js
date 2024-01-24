@@ -1,6 +1,17 @@
 const connection = require("../database/connection");
 
-const userExistCheck = async (email) => {
+const userNameExists = async (userName) => {
+  try {
+    return await connection("users")
+      .select("userName")
+      .where("userName", userName)
+      .first();
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const emailExists = async (email) => {
   try {
     return await connection("users")
       .select("email")
@@ -24,6 +35,19 @@ const modelRegisterUser = async (user) => {
         password,
       })
       .returning("*");
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const modelUserLogin = async (userName, password) => {
+  try {
+    return await connection("users")
+      .select("*")
+      .where("userName", userName)
+      .orWhere("email", userName)
+      .andWhere("password", password)
+      .first();
   } catch (error) {
     throw new Error(error);
   }
@@ -72,5 +96,7 @@ module.exports = {
   modelGetUserById,
   modelUpdateUser,
   modelDeleteUser,
-  userExistCheck,
+  emailExists,
+  userNameExists,
+  modelUserLogin,
 };
