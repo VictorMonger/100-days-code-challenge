@@ -8,8 +8,16 @@ const app = express();
 
 app.use(express.json());
 
-const { users } = require("./routes");
+const connection = require("./database/connection");
 
-app.use("/users", users);
+const UsersModel = require("./models/userModels");
+const UsersController = require("./controllers/userController");
+const { UsersRouter } = require("./routes/");
+
+const usersModel = new UsersModel(connection);
+const usersController = new UsersController(usersModel);
+const usersRouter = new UsersRouter(usersController);
+
+app.use("/users", usersRouter.getRoutes());
 
 app.listen(PORT);
