@@ -2,7 +2,7 @@ const express = require("express");
 
 class UsersRouter {
   constructor(usersController){
-    this.this.users = express.Router();
+    this.users = express.Router();
 
     this.usersController = usersController;
 
@@ -32,7 +32,7 @@ class UsersRouter {
   }
 
   getRoutes(){
-    return this.this.users;
+    return this.users;
   }
 }
 
