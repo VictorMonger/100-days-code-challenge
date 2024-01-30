@@ -14,15 +14,27 @@ class BankAccountModel {
     }
   }
 
+  async emailExists(email) {
+    try {
+      return await this.connection("clients")
+        .select("email")
+        .where("email", email)
+        .first();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async create(client) {
     try {
-      const { cpf, firstName, lastName, password } = client;
+      const { cpf, firstName, lastName, email, password } = client;
 
       return await this.connection("clients")
         .insert({
           cpf,
           firstName,
           lastName,
+          email,
           password,
         })
         .returning("*");

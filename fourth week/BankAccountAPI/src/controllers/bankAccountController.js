@@ -5,14 +5,22 @@ class BankAccountController {
 
   async create(request, response) {
     try {
-      const { cpf, firstName, lastName, password } = request.body;
+      const { cpf, firstName, lastName, email, password } = request.body;
       const failsInsert = 
-      !cpf || !firstName || !lastName || !password;
+      !cpf || !firstName || !lastName || !email || !password;
 
       if (failsInsert) {
         return response
           .status(400)
           .json({ error: "Insert all required fields" });
+      }
+
+      const emailExist = await this.bankAccountModel.emailExists(email);
+
+      if (emailExist) {
+        return response
+        .status(400).
+        json({ error: "E-mail already registered" });
       }
 
       const cpfExist = await this.bankAccountModel.cpfExists(cpf);
@@ -23,10 +31,17 @@ class BankAccountController {
           .json({ error: "cpf already registered" });
       }
 
+      if (password.length < 8) {
+        return response
+          .status(400)
+          .json({ error: "password must contain at least 8 characters" });
+      }
+
       const client = {
         cpf,
         firstName,
         lastName,
+        email,
         password,
       };
       
