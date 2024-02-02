@@ -52,6 +52,17 @@ class BankAccountController {
       return response.status(500).json({ error: "Internal Server Error" });
     }
   }
+
+  async getAll(request, response) {
+    try {
+      const clients = await this.bankAccountModel.getAll();
+
+      return response.status(200).json(clients);
+    } catch (error) {
+      return response.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
 }
 
 module.exports = BankAccountController;
