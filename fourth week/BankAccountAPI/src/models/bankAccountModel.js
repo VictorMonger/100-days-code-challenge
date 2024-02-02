@@ -43,6 +43,13 @@ class BankAccountModel {
     }
   }
 
+  async getAll() {
+    try {
+      return await this.connection("clients").select("*");
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 
 }
 
