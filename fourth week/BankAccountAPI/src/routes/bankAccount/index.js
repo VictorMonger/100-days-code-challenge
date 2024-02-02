@@ -9,6 +9,10 @@ class BankAccountRouter {
     this.bankAccount.post("/", (request, response) => {
       this.bankAccountController.create(request, response);
     });
+
+    this.bankAccount.get("/", (request, response) => {
+      this.bankAccountController.getAll(request, response);
+    })
   }
 
   getRoutes(){
