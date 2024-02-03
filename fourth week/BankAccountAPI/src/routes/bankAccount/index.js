@@ -17,6 +17,10 @@ class BankAccountRouter {
     this.bankAccount.delete("/:cpf", (request, response) => {
       this.bankAccountController.delete(request, response);
     });
+
+    this.bankAccount.get("/:cpf", (request, response) => {
+      this.bankAccountController.getBankStatement(request, response);
+    });
   }
 
   getRoutes(){
