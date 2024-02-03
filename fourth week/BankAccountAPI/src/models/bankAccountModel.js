@@ -51,6 +51,14 @@ class BankAccountModel {
     }
   }
 
+  async delete(cpf) {
+    try {
+      return await this.connection("clients").where("cpf", cpf).delete();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
 }
 
 module.exports = BankAccountModel
