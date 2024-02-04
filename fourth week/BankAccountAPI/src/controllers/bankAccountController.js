@@ -75,6 +75,18 @@ class BankAccountController {
     }
   }
 
+  async getBankStatement(request, response) {
+    try {
+      const { cpf } = request.params;
+
+      const getBankStatement = await this.bankAccountModel.getBankStatement(cpf);
+
+      return response.status(200).json(getBankStatement);
+    } catch (error) {
+      return response.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
 }
 
 module.exports = BankAccountController;
