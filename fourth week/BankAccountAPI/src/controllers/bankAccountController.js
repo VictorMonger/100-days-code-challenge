@@ -78,8 +78,9 @@ class BankAccountController {
   async getBankStatement(request, response) {
     try {
       const { cpf } = request.params;
+      const { password } = request.body;
 
-      const getBankStatement = await this.bankAccountModel.getBankStatement(cpf);
+      const getBankStatement = await this.bankAccountModel.getBankStatement(cpf, password);
 
       return response.status(200).json(getBankStatement);
     } catch (error) {
