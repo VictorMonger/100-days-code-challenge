@@ -59,6 +59,14 @@ class BankAccountModel {
     }
   }
 
-}
+  async getBankStatement(cpf, password) {
+    try {
+      return await this.connection("account").where("cpf", cpf).andWhere("password", password);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  }
 
 module.exports = BankAccountModel
