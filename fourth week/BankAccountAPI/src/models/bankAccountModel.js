@@ -25,7 +25,7 @@ class BankAccountModel {
     }
   }
 
-  async create(client) {
+  async createClient(client) {
     try {
       const { cpf, firstName, lastName, email, password } = client;
 
@@ -40,6 +40,14 @@ class BankAccountModel {
         .returning("*");
     } catch (error) {
       throw new Error(error);
+    }
+  }
+
+  async createAccount() {
+    try {
+      
+    } catch (error) {
+      
     }
   }
 
