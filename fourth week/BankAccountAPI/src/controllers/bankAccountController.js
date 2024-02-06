@@ -3,7 +3,7 @@ class BankAccountController {
     this.bankAccountModel = bankAccountModel;
   }
 
-  async create(request, response) {
+  async createClient(request, response) {
     try {
       const { cpf, firstName, lastName, email, password } = request.body;
       const failsInsert = 
@@ -45,11 +45,19 @@ class BankAccountController {
         password,
       };
       
-      const createAccount = await this.bankAccountModel.create(client);
+      const createClient = await this.bankAccountModel.create(client);
 
-      return response.status(201).json(createAccount);
+      return response.status(201).json(createClient);
     } catch (error) {
       return response.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async createAccount() {
+    try {
+      
+    } catch (error) {
+      
     }
   }
 
