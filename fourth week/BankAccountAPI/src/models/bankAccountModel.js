@@ -67,9 +67,9 @@ class BankAccountModel {
     }
   }
 
-  async getBankStatement(cpf, password) {
+  async getBankStatement(cpf, accountNumber) {
     try {
-      return await this.connection("account").where("cpf", cpf).andWhere("password", password);
+      return await this.connection("account").where("cpf", cpf).andWhere("accountNumber", accountNumber);
     } catch (error) {
       throw new Error(error);
     }
