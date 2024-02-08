@@ -43,8 +43,10 @@ class BankAccountModel {
     }
   }
 
-  async createAccount() {
+  async createAccount(request, response) {
     try {
+      const { cpf, password } = request.body;
+      
       
     } catch (error) {
       
@@ -74,7 +76,6 @@ class BankAccountModel {
       throw new Error(error);
     }
   }
-
   }
 
 module.exports = BankAccountModel
