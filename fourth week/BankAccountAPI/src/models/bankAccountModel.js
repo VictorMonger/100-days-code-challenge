@@ -45,7 +45,7 @@ class BankAccountModel {
 
   async createAccount(request, response) {
     try {
-      const { cpf, password } = request.body;
+      const { cpf } = request.body;
       
       
     } catch (error) {
