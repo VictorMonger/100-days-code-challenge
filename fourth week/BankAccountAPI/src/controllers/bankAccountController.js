@@ -61,9 +61,9 @@ class BankAccountController {
     }
   }
 
-  async getAll(request, response) {
+  async getAllClient(request, response) {
     try {
-      const clients = await this.bankAccountModel.getAll();
+      const clients = await this.bankAccountModel.getAllClient();
 
       return response.status(200).json(clients);
     } catch (error) {
@@ -78,6 +78,16 @@ class BankAccountController {
       const deletedClient = await this.bankAccountModel.delete(cpf);
 
       return response.status(200).json(deletedClient);
+    } catch (error) {
+      return response.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+
+  async getAllAccount(request, response) {
+    try {
+      const account = await this.bankAccountModel.getAllAccount();
+
+      return response.status(200).json(account);
     } catch (error) {
       return response.status(500).json({ error: "Internal Server Error" });
     }
