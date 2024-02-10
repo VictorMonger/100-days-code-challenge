@@ -53,7 +53,7 @@ class BankAccountModel {
     }
   }
 
-  async getAll() {
+  async getAllClients() {
     try {
       return await this.connection("clients").select("*");
     } catch (error) {
@@ -68,6 +68,17 @@ class BankAccountModel {
       throw new Error(error);
     }
   }
+
+   async getAllAccounts() {
+    try {
+      return await this.connection("account").select("*");
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  
+  
 
   async getBankStatement(cpf, accountNumber) {
     try {
