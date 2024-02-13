@@ -75,9 +75,9 @@ class BankAccountController {
     try {
       const { cpf } = request.params;
 
-      const deletedClient = await this.bankAccountModel.delete(cpf);
+      const deleteClient = await this.bankAccountModel.delete(cpf);
 
-      return response.status(200).json(deletedClient);
+      return response.status(200).json(deleteClient);
     } catch (error) {
       return response.status(500).json({ error: "Internal Server Error" });
     }
