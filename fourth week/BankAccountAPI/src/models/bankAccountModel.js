@@ -61,7 +61,7 @@ class BankAccountModel {
     }
   }
 
-  async delete(cpf) {
+  async deleteClient(cpf) {
     try {
       return await this.connection("clients").where("cpf", cpf).delete();
     } catch (error) {
