@@ -43,16 +43,6 @@ class BankAccountModel {
     }
   }
 
-  async createAccount(request, response) {
-    try {
-      const { cpf } = request.body;
-      
-      
-    } catch (error) {
-      
-    }
-  }
-
   async getAllClients() {
     try {
       return await this.connection("clients").select("*");

@@ -53,14 +53,6 @@ class BankAccountController {
     }
   }
 
-  async createAccount() {
-    try {
-      
-    } catch (error) {
-      
-    }
-  }
-
   async getAllClient(request, response) {
     try {
       const clients = await this.bankAccountModel.getAllClient();
