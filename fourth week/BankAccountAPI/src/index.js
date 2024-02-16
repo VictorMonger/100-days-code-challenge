@@ -18,6 +18,6 @@ const bankAccountModel = new BankAccountModel(connection);
 const bankAccountController = new BankAccountController(bankAccountModel);
 const bankAccountRouter = new BankAccountRouter(bankAccountController);
 
-app.use("/bankAccount", BankAccountRouter.getRoutes());
+app.use("/bankAccount", bankAccountRouter.getRoutes());
 
 app.listen(PORT);
