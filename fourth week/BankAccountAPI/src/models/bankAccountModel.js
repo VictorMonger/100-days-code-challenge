@@ -1,8 +1,8 @@
 class BankAccountModel {
-  constructor(connection){
+  constructor(connection) {
     this.connection = connection;
   }
-
+  
   async cpfExists(cpf) {
     try {
       return await this.connection("clients")
@@ -43,6 +43,17 @@ class BankAccountModel {
     }
   }
 
+  async getClientByCpf(cpf) {
+    try {
+      return await this.connection("clients")
+        .select("*")
+        .where("cpf", cpf)
+        .first();
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async getAllClients() {
     try {
       return await this.connection("clients").select("*");
@@ -58,25 +69,6 @@ class BankAccountModel {
       throw new Error(error);
     }
   }
+}
 
-   async getAllAccounts() {
-    try {
-      return await this.connection("account").select("*");
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  
-  
-
-  async getBankStatement(cpf, accountNumber) {
-    try {
-      return await this.connection("account").where("cpf", cpf).andWhere("accountNumber", accountNumber);
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-  }
-
-module.exports = BankAccountModel
+module.exports = BankAccountModel;
