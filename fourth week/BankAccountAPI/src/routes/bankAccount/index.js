@@ -11,15 +11,15 @@ class BankAccountRouter {
     });
 
     this.bankAccount.get("/", (request, response) => {
-      this.bankAccountController.getAll(request, response);
+      this.bankAccountController.getAllClients(request, response);
+    });
+
+    this.bankAccount.get("/:cpf", (request, response) => {
+      this.bankAccountController.getClientByCpf(request, response);
     });
 
     this.bankAccount.delete("/:cpf", (request, response) => {
       this.bankAccountController.delete(request, response);
-    });
-
-    this.bankAccount.get("/:cpf", (request, response) => {
-      this.bankAccountController.getBankStatement(request, response);
     });
   }
 
