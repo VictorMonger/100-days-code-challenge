@@ -1,5 +1,5 @@
-const BankAccountRouter  = require("./bankAccount");
+const BankClientsRouter  = require("./bankClients");
 
 module.exports = {
-  BankAccountRouter, 
+  BankClientsRouter, 
 };
