@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-
 const { JWT_PRIVATE_KEY } = process.env;
 
 class BankClientsController {
@@ -55,11 +54,6 @@ class BankClientsController {
       };
 
       const createClient = await this.bankClientsModel.createClient(client);
-
-      /*const createAccount = await this.bankClientsModel.createAccount(
-        cpf,
-        balance || 0
-      );*/
 
       return response.status(201).json(createClient);
     } catch (error) {
