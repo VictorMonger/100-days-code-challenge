@@ -1,5 +1,7 @@
-class bankAccountController {
-  constructor(){
-    
+class BankAccountController {
+  constructor(bankAccountModel) {
+    this.bankAccountModel = bankAccountModel;
   }
 }
+
+module.exports = BankAccountController;
