@@ -28,9 +28,10 @@ const bankAccountController = new BankAccountController(bankAccountModel)
 const bankClientsModel = new BankClientsModel(connection);
 const bankClientsController = new BankClientsController(
   bankClientsModel,
-  validator
+  validator,
+  bankAccountModel
   );
-const bankClientsRouter = new BankClientsRouter(bankClientsController);
+const bankClientsRouter = new BankClientsRouter(bankClientsController, bankAccountController);
 
 app.use("/bankClient/private", verifyToken);
 
