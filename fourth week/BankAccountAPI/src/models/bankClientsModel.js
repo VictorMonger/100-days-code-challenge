@@ -27,17 +27,17 @@ class BankClientsModel {
 
   async createClient(client) {
     try {
-      const { cpf, firstName, lastName, email, password } = client;
+        const { cpf, firstName, lastName, email, password } = client;
 
-      return await this.connection("clients")
-        .insert({
-          cpf,
-          firstName,
-          lastName,
-          email,
-          password,
-        })
-        .returning("*");
+        return await this.connection("clients")
+          .insert({
+            cpf,
+            firstName,
+            lastName,
+            email,
+            password,
+          })
+          .returning("*");
     } catch (error) {
       throw new Error(error);
     }

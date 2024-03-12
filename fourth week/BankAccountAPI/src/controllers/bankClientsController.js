@@ -2,9 +2,10 @@ const jwt = require("jsonwebtoken");
 const { JWT_PRIVATE_KEY } = process.env;
 
 class BankClientsController {
-  constructor(bankClientsModel, validator) {
+  constructor(bankClientsModel, validator, bankAccountModel) {
     this.bankClientsModel = bankClientsModel;
     this.validator = validator;
+    this.bankAccountModel = bankAccountModel;
   }
 
   async createClient(request, response) {
@@ -57,7 +58,6 @@ class BankClientsController {
 
       return response.status(201).json(createClient);
     } catch (error) {
-      console.log(error);
       return response.status(500).json({ error: "Internal Server Error" });
     }
   }
