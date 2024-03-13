@@ -1,4 +1,4 @@
-class BankClientsModel {
+  class BankClientsModel {
   constructor(connection) {
     this.connection = connection;
   }
