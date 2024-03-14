@@ -24,6 +24,7 @@ const validator = new Validator();
 
 const bankAccountModel = new BankAccountModel(connection);
 const bankAccountController = new BankAccountController(bankAccountModel)
+const bankAccountRotter = new BankAccountRouter()
 
 const bankClientsModel = new BankClientsModel(connection);
 const bankClientsController = new BankClientsController(
