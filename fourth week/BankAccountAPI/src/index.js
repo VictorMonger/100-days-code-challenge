@@ -32,7 +32,7 @@ const bankClientsController = new BankClientsController(
   validator,
   bankAccountModel
   );
-const bankClientsRouter = new BankClientsRouter(bankClientsController, bankAccountController);
+const bankClientsRouter = new BankClientsRouter(bankAccountController);
 
 app.use("/bankClient/private", verifyToken);
 
