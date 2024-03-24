@@ -22,13 +22,6 @@ class BankAccountController {
     }
   }
 
-  async deposit(request, response) {
-
-  }
-
-  async withdrawal(request, response) {
-    
-  }
 }
 
 module.exports = BankAccountController;

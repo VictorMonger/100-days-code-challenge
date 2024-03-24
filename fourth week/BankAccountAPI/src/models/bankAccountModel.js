@@ -17,14 +17,6 @@ class BankAccountModel {
     throw new Error(error);
   }
   }
-
-  async deposit() {
-
-  }
-
-  async withdrawal() {
-    
-  }
 }
 
 module.exports = BankAccountModel;
