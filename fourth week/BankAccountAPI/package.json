@@ -1,5 +1,5 @@
 {
-  "name": "BankAccountAPI",
+  "name": "Bank-Account-API",
   "version": "1.0.0",
   "description": "A API simulating a system of a bank",
   "main": "index.js",
